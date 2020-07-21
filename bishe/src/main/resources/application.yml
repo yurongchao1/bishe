@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123
+    url: jdbc:mysql://127.0.0.1:3306/bishe?characterEncoding=utf-8&useSSL=false
+
+
+
+mybatis:
+      mapper-locations: classpath:mappers/*.xml
+      type-aliases-package: com.chao.bishe.domain
+
+logging:
+ level:
+  com.chao.bishe.mappers: debug

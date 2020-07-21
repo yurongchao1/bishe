@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chao.bishe.mappers.RestaurantInfoMapper">
+
+    <!-- 配置 查询结果的列名和实体类的属性名的对应关系 -->
+    <resultMap id="RestaurantInfoMap" type="com.chao.bishe.domain.RestaurantInfo">
+        <!-- 主键字段的对应 -->
+        <id property="restaurantId" column="restaurant_id"></id>
+        <!--非主键字段的对应-->
+        <result property="restaurantName" column="restaurant_name"></result>
+        <result property="restaurantAddress" column="restaurant_address"></result>
+        <result property="restaurantPhone" column="restaurant_phone"></result>
+
+    </resultMap>
+
+
+    <select id="findOne" parameterType="int" resultMap="RestaurantInfoMap">
+        select * from restaurant_info where restaurant_id = #{value}
+    </select>
+
+
+
+    <update id="update" parameterType="com.chao.bishe.domain.RestaurantInfo">
+        update restaurant_info  set restaurant_name=#{restaurantName},restaurant_address=#{restaurantAddress},restaurant_phone=#{restaurantPhone}
+           where restaurant_id=#{restaurantId}
+    </update>
+
+
+</mapper>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chao.bishe.mappers.ProductInfoMapper">
+
+
+    <!-- 配置 查询结果的列名和实体类的属性名的对应关系 -->
+    <resultMap id="ProductInfoMap" type="com.chao.bishe.domain.ProductInfo">
+        <!-- 主键字段的对应 -->
+        <id property="productId" column="product_id"></id>
+        <!--非主键字段的对应-->
+        <result property="productName" column="product_name"></result>
+        <result property="productPrice" column="product_price"></result>
+        <result property="productDescription" column="product_description"></result>
+        <result property="productIcon" column="product_icon"></result>
+        <result property="productStatus" column="product_status"></result>
+        <result property="categoryType" column="category_type"></result>
+        <result property="createTime" column="create_time"></result>
+        <result property="updateTime" column="update_time"></result>
+
+    </resultMap>
+    <insert id="insert" parameterType="com.chao.bishe.domain.ProductInfo">
+        <selectKey keyProperty="productId" order="AFTER" resultType="java.lang.String">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into product_info(product_id,product_name,product_price,product_description,product_icon,product_status,category_type,create_time,update_time)
+                                  value(#{productId},#{productName},#{productPrice},#{productDescription},#{productIcon},#{productStatus},#{categoryType},#{createTime},#{updateTime})
+    </insert>
+
+
+    <select id="findOne" parameterType="string" resultMap="ProductInfoMap">
+        select * from product_info where product_id = #{productId}
+    </select>
+
+
+
+    <select id="findAll"  resultMap="ProductInfoMap">
+        select * from product_info
+    </select>
+
+    <select id="findAllOnSale"  resultMap="ProductInfoMap">
+        select * from product_info where  product_status=0
+    </select>
+
+    <update id="update" parameterType="com.chao.bishe.domain.ProductCategory">
+           update product_info set product_name=#{productName},product_price=#{productPrice},product_description=#{productDescription},product_icon=#{productIcon},product_status=#{productStatus},category_type=#{categoryType} where product_id=#{productId}
+    </update>
+
+</mapper>

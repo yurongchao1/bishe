@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chao.bishe.mappers.OrderMasterMapper">
+
+    <!-- 配置 查询结果的列名和实体类的属性名的对应关系 -->
+    <resultMap id="OrderMasterMap" type="com.chao.bishe.domain.OrderMaster">
+        <!-- 主键字段的对应 -->
+        <id property="orderId" column="order_id"></id>
+        <!--非主键字段的对应-->
+        <result property="buyerPhone" column="buyer_phone"></result>
+        <result property="buyerAddress" column="buyer_address"></result>
+        <result property="orderAmount" column="order_amount"></result>
+        <result property="orderStatus" column="order_status"></result>
+        <result property="payStatus" column="pay_status"></result>
+        <result property="createTime" column="create_time"></result>
+        <result property="updateTime" column="update_time"></result>
+        <result property="buyerName" column="buyer_name"></result>
+        <result property="buyerOpenid" column="buyer_openid"></result>
+        <collection property="orderDetailList" ofType="com.chao.bishe.domain.OrderDetail">
+            <!-- 主键字段的对应
+-->
+            <id property="detailId" column="detail_id"></id>
+            <!--非主键字段的对应-->
+            <result property="orderId" column="order_id"></result>
+            <result property="productId" column="product_id"></result>
+            <result property="productName" column="product_name"></result>
+            <result property="productPrice" column="product_price"></result>
+            <result property="productQuantity" column="product_quantity"></result>
+            <result property="productIcon" column="product_icon"></result>
+        </collection>
+    </resultMap>
+
+    <insert id="insert" parameterType="com.chao.bishe.domain.OrderMaster">
+        <selectKey keyProperty="orderId" order="AFTER" resultType="java.lang.String">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into order_master(order_id,buyer_phone,buyer_address,order_amount,order_status,pay_status,buyer_name,buyer_openid)
+         value(#{orderId},#{buyerPhone},#{buyerAddress},#{orderAmount},#{orderStatus},#{payStatus},#{buyerName},#{buyerOpenid})
+    </insert>
+
+
+    <select id="findOne" parameterType="string" resultMap="OrderMasterMap" >
+        SELECT * FROM order_master m LEFT OUTER JOIN order_detail d ON m.order_id=d.order_id where  m.order_id=#{value}
+    </select>
+
+
+
+    <select id="findAll"  resultMap="OrderMasterMap">
+       SELECT * FROM order_master m LEFT OUTER JOIN order_detail d ON m.order_id=d.order_id
+    </select>
+
+    <update id="update" parameterType="com.chao.bishe.domain.OrderMaster">
+           update order_master set buyer_phone=#{buyerPhone},buyer_address=#{buyerAddress},order_amount=#{orderAmount},order_status=#{orderStatus},pay_status=#{payStatus},buyer_name=#{buyerName},buyer_openid=#{buyerOpenid}  where order_id=#{orderId}
+    </update>
+
+    <select id="findOrderListByStatus"  resultMap="OrderMasterMap" >
+        SELECT * FROM order_master m LEFT OUTER JOIN order_detail d ON m.order_id=d.order_id where order_status=#{orderStatus} and buyer_openid=#{buyerOpenid}
+    </select>
+</mapper>
