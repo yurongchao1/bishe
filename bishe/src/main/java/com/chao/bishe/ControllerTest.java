@@ -30,6 +30,7 @@ public class ControllerTest {
     public List<ProductCategory> test() {
         List<ProductCategory> all = productCategoryDao.findAll();
         return all;
+        //git test
     }
 
     @RequestMapping("/test1")
