@@ -1,7 +1,6 @@
 package com.chao.bishe.enums;
 
 
-import jdk.nashorn.internal.objects.annotations.Getter;
 
 
 public enum OrderStatusEnum  implements  CodeEnum{

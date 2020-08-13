@@ -6,11 +6,14 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/bishe?characterEncoding=utf-8&useSSL=false
 
 
-
 mybatis:
       mapper-locations: classpath:mappers/*.xml
       type-aliases-package: com.chao.bishe.domain
 
 logging:
- level:
-  com.chao.bishe.mappers: debug
+   level:
+      com.chao.bishe.mappers: debug
+
+
+server:
+  port: 8080

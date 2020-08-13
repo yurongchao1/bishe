@@ -1,7 +1,9 @@
 package com.chao.bishe.domain;
 
 
+import lombok.Data;
 
+@Data
 public class SellerInfo {
 
     private String sellerId;
@@ -10,7 +12,7 @@ public class SellerInfo {
 
     private String password;
 
-    public String getSellerId() {
+/*    public String getSellerId() {
         return sellerId;
     }
 
@@ -32,5 +34,5 @@ public class SellerInfo {
 
     public void setPassword(String password) {
         this.password = password;
-    }
+    }*/
 }

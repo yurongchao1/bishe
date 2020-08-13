@@ -4,6 +4,8 @@ import com.chao.bishe.dao.OrderMasterDao;
 import com.chao.bishe.dao.ProductCategoryDao;
 import com.chao.bishe.domain.OrderMaster;
 import com.chao.bishe.domain.ProductCategory;
+import com.chao.bishe.domain.SellerInfo;
+import com.sun.xml.internal.messaging.saaj.util.SAAJUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +37,16 @@ public class ControllerTest {
 
     @RequestMapping("/test1")
     public void test1() {
-
+        String s="abc";
+        s=s+"cd";
+        System.out.println("-----");
+        System.out.println(s);
+        String a=new String("abc");
+        a=a+"abc";
+        System.out.println(a);
+        System.out.println("yurongchao");
+        System.out.println("jjdjdjdj");
+        SellerInfo sellerInfo=new SellerInfo();
     }
 
 

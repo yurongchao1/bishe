@@ -14,7 +14,7 @@ import java.util.List;
 
 public class OrderMaster {
 
-    List<OrderDetail> orderDetailList;
+     List<OrderDetail> orderDetailList;
 
     public List<OrderDetail> getOrderDetailList() {
         return orderDetailList;
